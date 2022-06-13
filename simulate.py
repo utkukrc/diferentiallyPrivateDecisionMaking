@@ -10,8 +10,8 @@ Updated on Mon Jun 13 11:00:00 2022
 
 def init_model(ins):
     import numpy as np
-    import model_original
-    import model_sk             # Model with s_k introduced
+    import codes.model_original as model_original
+    import codes.model_sk as model_sk             # Model with s_k introduced
 # Coefficient for demand vectors
     demand_coef = 0.25          # each products' demand (d_k) will be multiplied with this
 # Upper Limit creation for each party
@@ -45,7 +45,7 @@ def init_model(ins):
 
 def dataPrivate_model(ins, step_len, init_mod, f, heavy_ball, beta):
     import numpy as np
-    import model_distr
+    import codes.model_distr as model_distr
 # Coefficients
     max_iter_subgradient = 10
 # Upper Limit creation for each party
@@ -140,8 +140,8 @@ def diffPrivate_model(ins, step_len,
                       f, heavy_ball, beta,
                       sensitivity_delta):
     import numpy as np
-    import model_dp
-    import tools
+    import codes.model_dp as model_dp
+    import codes.tools as tools
     max_iter = 50  # number of iterations that the differentially private algorithm is ran
 
 # Upper Limit creation for each party
@@ -375,7 +375,7 @@ def result_row(ins,
 def simulation(parameter_list):
     import numpy as np
     import csv
-    from tools import instance
+    from codes.tools import instance
     parties = int(parameter_list[0])
     m = int(parameter_list[1])
     step_len = int(parameter_list[2])
@@ -542,7 +542,7 @@ def simulation(parameter_list):
 
 
 if __name__ == "__main__":
-    from tools import cartesian
+    from codes.tools import cartesian
     grid = list(cartesian(([5, 8, 10, 20],   # number of parties
                            [5],             # number of shared capacities
                            [1],             # 1: step_len nu^(0.50), 2: constant
